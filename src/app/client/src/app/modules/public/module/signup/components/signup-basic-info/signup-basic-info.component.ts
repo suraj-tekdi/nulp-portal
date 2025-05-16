@@ -33,14 +33,6 @@ export class SignupBasicInfoComponent implements OnInit {
   isOtherUserType1: boolean = false;
   isOtherCountrySelected = false;
 
-  // states: string[] = ['Maharashtra', 'Karnataka', 'Tamil Nadu', 'Uttar Pradesh'];
-  // districts: string[] = ['Pune', 'Mumbai', 'Bangalore', 'Chennai', 'Lucknow'];
-  // allDistricts: { [key: string]: string[] } = {
-  //   'Maharashtra': ['Pune', 'Mumbai', 'Nagpur'],
-  //   'Karnataka': ['Bengaluru', 'Mysuru', 'Hubli'],
-  //   'Tamil Nadu': ['Chennai', 'Madurai', 'Coimbatore'],
-  //   'Delhi': ['New Delhi', 'South Delhi']
-  // };
 
   states: { name: string, id: string }[] = [];
   districts: { name: string, id: string }[] = [];
@@ -51,6 +43,10 @@ export class SignupBasicInfoComponent implements OnInit {
     public utilService: UtilService, public configService: ConfigService, private _fb: FormBuilder, private signupService: SignupService) { }
 
   ngOnInit(): void {
+    console.log('ngOnInit called');
+    console.log("Country", this.resourceService.frmelmnts.lbl.profile.Country)
+    console.log("selectCountry", this.resourceService.frmelmnts.lbl.profile.selectCountry)
+    console.log("enterCountryName", this.resourceService.frmelmnts.lbl.profile.enterCountryName)
     this.instance = _.upperCase(this.resourceService.instance || 'NULP');
     this.loadStates();  // Fetch state list from API
     this.personalInfoForm = this._fb.group({
