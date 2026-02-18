@@ -88,6 +88,17 @@ fi
 ## wait for both build to complete
 wait 
 
+# Copy production build from app_dist/dist to dist for server to serve
+echo "Copying production build from app_dist/dist to dist"
+cd src/app
+mkdir -p dist
+cp -r app_dist/dist/* dist/
+if [ -f dist/index.html ]; then
+    mv dist/index.html dist/index.ejs
+    echo "Converted index.html to index.ejs"
+fi
+echo "Completed copying production build to dist"
+
 BUILD_ENDTIME=$(date +%s)
 echo "Client and Server Build complete Took $[$BUILD_ENDTIME - $STARTTIME] seconds to complete."
 
